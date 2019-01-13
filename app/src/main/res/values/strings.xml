@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LocalWeather</string>
+    <string name="head_title">Local Weather</string>
+    <string name="list_head_title">Local</string>
+    <string name="list_today">Today</string>
+    <string name="list_tomorrow">Tomorrow</string>
+    <string name="celsius">°C</string>
+    <string name="percent">%</string>
+</resources>
