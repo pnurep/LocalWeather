@@ -1,6 +1,7 @@
 package com.dev.gold.localweather
 
 import android.util.Log
+import com.dev.gold.localweather.interfaces.WeatherApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,31 +1,31 @@
-package com.dev.gold.localweather
+package com.dev.gold.localweather.model
 
 import com.google.gson.annotations.SerializedName
 
 data class LocationInfo(
-        @SerializedName("consolidated_weather")
+    @SerializedName("consolidated_weather")
         val consolidatedWeather: List<ConsolidatedWeather>,
-        @SerializedName("latt_long")
+    @SerializedName("latt_long")
         val lattLong: String,
-        @SerializedName("location_type")
+    @SerializedName("location_type")
         val locationType: String,
-        @SerializedName("parent")
+    @SerializedName("parent")
         val parent: Parent,
-        @SerializedName("sources")
+    @SerializedName("sources")
         val sources: List<Source>,
-        @SerializedName("sun_rise")
+    @SerializedName("sun_rise")
         val sunRise: String,
-        @SerializedName("sun_set")
+    @SerializedName("sun_set")
         val sunSet: String,
-        @SerializedName("time")
+    @SerializedName("time")
         val time: String,
-        @SerializedName("timezone")
+    @SerializedName("timezone")
         val timezone: String,
-        @SerializedName("timezone_name")
+    @SerializedName("timezone_name")
         val timezoneName: String,
-        @SerializedName("title")
+    @SerializedName("title")
         val title: String,
-        @SerializedName("woeid")
+    @SerializedName("woeid")
         val woeid: Int
 ) {
     data class ConsolidatedWeather(

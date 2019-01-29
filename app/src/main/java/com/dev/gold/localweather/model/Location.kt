@@ -1,4 +1,4 @@
-package com.dev.gold.localweather
+package com.dev.gold.localweather.model
 
 import com.google.gson.annotations.SerializedName
 

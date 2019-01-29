@@ -7,7 +7,7 @@
 
         <variable
             name="weatherData"
-            type="com.dev.gold.localweather.WeatherListData" />
+            type="com.dev.gold.localweather.model.WeatherListData" />
 
     </data>
 

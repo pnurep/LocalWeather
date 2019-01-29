@@ -1,9 +1,10 @@
-package com.dev.gold.localweather
+package com.dev.gold.localweather.viewmodel
 
 import android.arch.lifecycle.*
 import android.databinding.ObservableField
-import android.os.Looper
 import android.util.Log
+import com.dev.gold.localweather.model.WeatherListData
+import com.dev.gold.localweather.repository.WeatherRepo
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -21,13 +22,14 @@ class MainViewModel : ViewModel(), LifecycleObserver {
 
     private val disposable = CompositeDisposable()
 
+    private val weatherRepo: WeatherRepo by lazy { WeatherRepo() }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getLocations() {
 
         val weatherList = mutableListOf<WeatherListData>()
 
-        RetrofitClient.locationsApi.getLocations("se")
+        weatherRepo.getLocations("se")
             .doOnSubscribe {
                 if (isFirst.get()!!) isLoading.set(false) else isLoading.set(true)
                 weatherLiveData.postValue(null)
@@ -37,7 +39,7 @@ class MainViewModel : ViewModel(), LifecycleObserver {
                 Observable.fromIterable(it)
             }
             .concatMapEager {
-                RetrofitClient.locationsApi.getLocationInfo(it.woeid)
+                weatherRepo.getLocationInfo(it.woeid)
             }
             .doFinally {
                 isFirst.set(false)
@@ -88,9 +90,9 @@ class MainViewModel : ViewModel(), LifecycleObserver {
 
     private fun makeFakeData(): WeatherListData {
         return WeatherListData(
-            "head", 0,
-            WeatherListData.Today("", "", 0.toDouble(), 0),
-            WeatherListData.Tomorrow("", "", 0.toDouble(), 0)
+            title = "head",
+            today = WeatherListData.Today(),
+            tomorrow = WeatherListData.Tomorrow()
         )
     }
 

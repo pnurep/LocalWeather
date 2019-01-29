@@ -1,4 +1,4 @@
-package com.dev.gold.localweather
+package com.dev.gold.localweather.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -8,7 +8,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.widget.LinearLayout
+import com.dev.gold.localweather.ListAdapter
+import com.dev.gold.localweather.R
 import com.dev.gold.localweather.databinding.ActivityMainBinding
+import com.dev.gold.localweather.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
+            R.layout.activity_main
+        )
 
         val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         lifecycle.addObserver(mainViewModel)
@@ -28,7 +33,9 @@ class MainActivity : AppCompatActivity() {
 
         with(binding.weatherList) {
             DividerItemDecoration(this@with.context, LinearLayout.VERTICAL).apply {
-                setDrawable(ContextCompat.getDrawable(this@MainActivity, R.drawable.list_divider)!!)
+                setDrawable(ContextCompat.getDrawable(this@MainActivity,
+                    R.drawable.list_divider
+                )!!)
                 this@with.addItemDecoration(this)
             }
 

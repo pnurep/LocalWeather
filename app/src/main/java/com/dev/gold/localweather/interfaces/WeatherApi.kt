@@ -1,5 +1,7 @@
-package com.dev.gold.localweather
+package com.dev.gold.localweather.interfaces
 
+import com.dev.gold.localweather.model.Location
+import com.dev.gold.localweather.model.LocationInfo
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

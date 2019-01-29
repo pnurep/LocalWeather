@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dev.gold.localweather.databinding.ListItemRowBinding
+import com.dev.gold.localweather.model.WeatherListData
 
 class ListAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
