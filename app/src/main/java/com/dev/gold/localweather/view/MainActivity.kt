@@ -12,19 +12,26 @@ import com.dev.gold.localweather.ListAdapter
 import com.dev.gold.localweather.R
 import com.dev.gold.localweather.databinding.ActivityMainBinding
 import com.dev.gold.localweather.viewmodel.MainViewModel
+import com.dev.gold.localweather.viewmodel.MainViewModelFactory
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.instance
 
-class MainActivity : AppCompatActivity() {
 
-    private val listAdapter by lazy { ListAdapter(this@MainActivity) }
+class MainActivity : AppCompatActivity(), KodeinAware {
+
+    override val kodein by closestKodein()
+    private val viewModelFactory: MainViewModelFactory by instance()
+    private val listAdapter: ListAdapter by instance()
+
+    val ddd: String by instance("ddd")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,
-            R.layout.activity_main
-        )
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         lifecycle.addObserver(mainViewModel)
 
         mainViewModel.weatherLiveData.observe(this, Observer {
@@ -33,9 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         with(binding.weatherList) {
             DividerItemDecoration(this@with.context, LinearLayout.VERTICAL).apply {
-                setDrawable(ContextCompat.getDrawable(this@MainActivity,
-                    R.drawable.list_divider
-                )!!)
+                setDrawable(ContextCompat.getDrawable(this@MainActivity, R.drawable.list_divider)!!)
                 this@with.addItemDecoration(this)
             }
 

@@ -17,7 +17,7 @@ object RetrofitClient {
             return retrofit!!.create(WeatherApi::class.java)
         }
 
-    var retrofit: Retrofit? = null
+    private var retrofit: Retrofit? = null
         get() {
             field = field ?: setUpRetrofit()
             return field

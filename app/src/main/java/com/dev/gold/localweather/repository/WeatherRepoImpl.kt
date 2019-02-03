@@ -1,21 +1,19 @@
 package com.dev.gold.localweather.repository
 
-import com.dev.gold.localweather.interfaces.WeatherContract
+import com.dev.gold.localweather.model.WeatherDataModel
 import com.dev.gold.localweather.model.Location
 import com.dev.gold.localweather.model.LocationInfo
-import com.dev.gold.localweather.model.WeatherDataModel
+import com.dev.gold.localweather.model.WeatherDataModelImpl
 import io.reactivex.Observable
 
 
-class WeatherRepo {
+class WeatherRepoImpl(private val weatherDataModel: WeatherDataModel): WeatherRepo {
 
-    private val weatherDataModel: WeatherContract by lazy { WeatherDataModel() }
-
-    fun getLocations(query: String): Observable<List<Location>> {
+    override fun getLocations(query: String): Observable<List<Location>> {
         return weatherDataModel.getLocations(query)
     }
 
-    fun getLocationInfo(woeid: Int): Observable<LocationInfo> {
+    override fun getLocationInfo(woeid: Int): Observable<LocationInfo> {
         return weatherDataModel.getLocationInfo(woeid)
     }
 

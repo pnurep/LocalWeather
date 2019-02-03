@@ -5,6 +5,7 @@ import android.databinding.ObservableField
 import android.util.Log
 import com.dev.gold.localweather.model.WeatherListData
 import com.dev.gold.localweather.repository.WeatherRepo
+import com.dev.gold.localweather.repository.WeatherRepoImpl
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -12,7 +13,7 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel : ViewModel(), LifecycleObserver {
+class MainViewModel(private val weatherRepo: WeatherRepo) : ViewModel(), LifecycleObserver {
 
     val weatherLiveData = MutableLiveData<List<WeatherListData>>()
 
@@ -22,7 +23,7 @@ class MainViewModel : ViewModel(), LifecycleObserver {
 
     private val disposable = CompositeDisposable()
 
-    private val weatherRepo: WeatherRepo by lazy { WeatherRepo() }
+    //private val weatherRepo: WeatherRepo by lazy { WeatherRepoImpl() }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getLocations() {
