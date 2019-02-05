@@ -1,6 +1,5 @@
 package com.dev.gold.localweather
 
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.ViewGroup
 import com.dev.gold.localweather.databinding.ListItemRowBinding
 import com.dev.gold.localweather.model.WeatherListData
 
-class ListAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
 
@@ -27,13 +26,13 @@ class ListAdapter(private val context: Context) : RecyclerView.Adapter<RecyclerV
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         if (viewType == VIEW_TYPE_HEADER) {
-            val headView = LayoutInflater.from(context).inflate(R.layout.list_header, parent, false)
+            val headView = LayoutInflater.from(parent.context).inflate(R.layout.list_header, parent, false)
 
             return HeadViewHolder(headView)
         }
 
         val binding = DataBindingUtil
-                .inflate<ListItemRowBinding>(LayoutInflater.from(context), R.layout.list_item_row, parent, false)
+            .inflate<ListItemRowBinding>(LayoutInflater.from(parent.context), R.layout.list_item_row, parent, false)
 
         return ViewHolder(binding)
     }

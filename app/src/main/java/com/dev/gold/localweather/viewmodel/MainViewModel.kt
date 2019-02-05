@@ -12,7 +12,7 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel : ViewModel(), LifecycleObserver {
+class MainViewModel(private val weatherRepo: WeatherRepo) : ViewModel(), LifecycleObserver {
 
     val weatherLiveData = MutableLiveData<List<WeatherListData>>()
 
@@ -22,7 +22,6 @@ class MainViewModel : ViewModel(), LifecycleObserver {
 
     private val disposable = CompositeDisposable()
 
-    private val weatherRepo: WeatherRepo by lazy { WeatherRepo() }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun getLocations() {

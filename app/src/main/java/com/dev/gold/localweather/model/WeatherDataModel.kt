@@ -1,18 +1,12 @@
 package com.dev.gold.localweather.model
 
-import com.dev.gold.localweather.RetrofitClient
-import com.dev.gold.localweather.interfaces.WeatherContract
+
 import io.reactivex.Observable
 
+interface WeatherDataModel {
 
-class WeatherDataModel : WeatherContract {
+    fun getLocations(query: String): Observable<List<Location>>
 
-    override fun getLocations(query: String): Observable<List<Location>> {
-        return RetrofitClient.locationsApi.getLocations(query)
-    }
-
-    override fun getLocationInfo(woeid: Int): Observable<LocationInfo> {
-        return RetrofitClient.locationsApi.getLocationInfo(woeid)
-    }
+    fun getLocationInfo(woeid: Int): Observable<LocationInfo>
 
 }
