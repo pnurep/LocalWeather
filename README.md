@@ -5,6 +5,6 @@ Toy Weather App
 
 Api : https://www.metaweather.com/api/
 
-Archietecture : MVVM
+Architecture : MVVM
 
-Stack : Android DataBinding, AAC, Retrofit2, Glide v4, RxJava2, RxKotlin
+Stack : Android DataBinding, AAC, Dagger2, Kodein, Retrofit2, Glide v4, RxJava2, RxKotlin
